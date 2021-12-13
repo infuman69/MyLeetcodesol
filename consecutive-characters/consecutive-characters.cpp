@@ -11,7 +11,7 @@ public:
                 x = 0;
             if(max<x)
                 max = x;
-            cout<<x<<endl;
+            
         }
         max++;
         return max;
