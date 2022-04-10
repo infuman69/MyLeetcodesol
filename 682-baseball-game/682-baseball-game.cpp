@@ -1,39 +1,24 @@
 class Solution {
 public:
     int calPoints(vector<string>& ops) {
-        int value1;
-        int value2;
-        int ans = 0;
-        stack<int>stk;
-        
-        for(string i:ops)
-        {
-            if(i == "C")
-            {
-                stk.pop();
+        vector<int> record;
+        int s = 0,i;
+        for(i = 0;i < ops.size();i++){
+            if(ops[i]=="+"){
+                record.push_back(record[record.size()-1]+record[record.size()-2]);
             }
-            else if(i == "D")
-            {
-                stk.push(stk.top()*2);
+            else if(ops[i] == "C"){
+                record.erase(record.begin()+record.size()-1);
             }
-            else if(i == "+")
-            {
-                value1 = stk.top();
-                stk.pop();
-                value2 = stk.top();
-                stk.push(value1);
-                stk.push(value1 + value2);
+            else if(ops[i] == "D"){
+                record.push_back(2*record[record.size() - 1]);
             }
-            else
-            {
-                stk.push(stoi(i)); //stoi() to convert string into integer 
+            else {
+                record.push_back(stoi(ops[i]));
             }
         }
-        while(stk.size() != 0)
-        {
-            ans += stk.top();
-            stk.pop();
-        }
-        return ans;
+        for(auto num:record)
+            s+=num;
+        return s;
     }
 };
