@@ -114,20 +114,13 @@ struct Node
       /      \ 
    20       30 */
 int countLeaves(Node* root)
-{   if(!root)
+{   
+    if(!root)
         return 0;
-    int c = 0;
-    queue<Node*> q;
-    q.push(root);
-    while(!q.empty()){
-        Node* node = q.front();
-        q.pop();
-        if(!node->left&&!node->right)
-            c++;
-        if(node->left)
-            q.push(node->left);
-        if(node->right)
-            q.push(node->right);
-    }
-    return c;
+        
+    if(!root->left&&!root->right)
+        return 1;
+    
+    return countLeaves(root->left) + countLeaves(root->right);
+        
 }
