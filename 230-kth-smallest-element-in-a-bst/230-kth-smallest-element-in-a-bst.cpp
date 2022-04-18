@@ -12,15 +12,21 @@
 class Solution {
 private:vector<int> v;
 public:
-    void inOrder(TreeNode* root){
+    void inOrder(TreeNode* root,int &pos,int &ans,int &k){
         if(root){
-            inOrder(root->left);
-            v.push_back(root->val);
-            inOrder(root->right);
+            inOrder(root->left,pos,ans,k);
+            pos++;
+            if(pos == k)
+            {
+                ans = root->val;
+                return ;
+            }
+            inOrder(root->right,pos,ans,k);
         }
     }
     int kthSmallest(TreeNode* root, int k) {
-        inOrder(root);
-        return v[k - 1];
+        int pos = 0,ans = INT_MAX;
+        inOrder(root,pos,ans,k);
+        return ans;
     }
 };
