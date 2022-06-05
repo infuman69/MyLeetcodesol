@@ -11,18 +11,16 @@
  */
 class Solution {
 public:
-    TreeNode* helper(TreeNode* root){
+    TreeNode* invertTree(TreeNode* root) {
         if(!root)
             return NULL;
-        TreeNode* uroot = new TreeNode();
-        uroot->val = root->val;
-        uroot->left = helper(root->right);
-        uroot->right = helper(root->left);
-        return uroot;
-    }
-    TreeNode* invertTree(TreeNode* root) {
-        TreeNode *inverted = helper(root);
+        TreeNode *temp = root->left;
+        root->left = root->right ;
+        root->right = temp;
         
-        return inverted;
+        invertTree(root->left);
+        invertTree(root->right);
+        
+        return root;
     }
 };
