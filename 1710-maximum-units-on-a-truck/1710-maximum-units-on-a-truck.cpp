@@ -6,20 +6,9 @@ public:
         });
         int units = 0;
         for(auto x:boxTypes){
-            
-            if(x[0] <= truckSize)
-                units += x[0]*x[1];
-            else{
-                if(truckSize == 0)
-                    break;
-                else{
-                    units += truckSize*x[1];
-                    truckSize -= truckSize;
-                    continue;
-                }
-            }
-            
-            truckSize -= x[0];
+            int num = min(truckSize,x[0]);
+            units += num*x[1];
+            truckSize -= num;
         }
         return units;
     }
