@@ -12,15 +12,10 @@
 class Solution {
 public:
     bool hasPathSum(TreeNode* root, int targetSum) {
-        bool ans = false;
-        if(root){ 
-            if(root->left)
-                ans = ans || hasPathSum(root->left,targetSum - root->val);
-            if(root->right)
-                ans = ans || hasPathSum(root->right,targetSum - root->val);
-            if(root->val == targetSum && !root->left && !root->right)
-                return true;
-        }
-        return ans;
+        if(!root)
+            return false;
+        if(!root->left && !root->right) 
+            return root->val == targetSum;
+        return hasPathSum(root->left,targetSum - root->val)||hasPathSum(root->right,targetSum - root->val);
     }
 };
