@@ -19,6 +19,7 @@ class Solution {
     }
   public:
     int numProvinces(vector<vector<int>> adj, int V) {
+        // adjacency matrix to list
         vector<int> adjlist[V];
         for(int i = 0;i < V;i++) {
             for(int j = 0;j < V;j++) {
@@ -29,6 +30,7 @@ class Solution {
             }
         }
         
+        // we use the visited to track to count the number of dfs traversals which gives the no of traversal
         int vis[V] = {0};
         int count = 0;
         for(int i = 0;i < V;i++) {
